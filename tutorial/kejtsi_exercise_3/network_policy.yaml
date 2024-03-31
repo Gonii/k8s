@@ -13,7 +13,5 @@ spec:
       ports:
         - port: 6379
     - from:
-        - namespaceSelector:
-            matchLabels:
-              app: backend
+        - podSelector: {}
 
