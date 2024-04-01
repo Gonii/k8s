@@ -1,0 +1,1 @@
+**Task**: Provision a PersistentVolume of 1GiB, backed by host storage. Then, create a PersistentVolumeClaim that requests this volume and mounts it into a Pod running the `busybox` image. The Pod should write the current date into a file named `/data/date.txt` every minute.

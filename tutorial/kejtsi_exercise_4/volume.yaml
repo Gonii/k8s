@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv01
+spec:
+  accessModes:
+  capacity:
+  hostPath:
+    path: /tmp/goni/
+    type: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv01claim
+spec:
+  accessModes:
+  selector:
+    matchLabels:
+      name: pv01
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gonipod
+spec:
+  volumes:
+  - name: vol
+    persistentVolumeClaim:
+      claimName: pv01claim
+  containers:
+  - name: pv-recycler
+    image: "registry.k8s.io/busybox"
+    command: ["/bin/sh", "-c"]
+    args: ["echo hellopod > /tmp/goni/1 && sleep 9999"]
+    # volumeMounts:
+    # - name: vol
+    #   mountPath: /tmp/goni/
