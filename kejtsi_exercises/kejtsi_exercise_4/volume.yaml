@@ -42,7 +42,7 @@ spec:
   - name: pv-recycler
     image: "registry.k8s.io/busybox"
     command: ["/bin/sh", "-c"]
-    args: ["echo hellopod > /tmp/goni/1 && sleep 9999"]
+    args: ["while true;do echo $(date) >> /data/date.txt;sleep 60;done"]
     volumeMounts:
     - name: vol
-      mountPath: /tmp/goni/
+      mountPath: /data/
