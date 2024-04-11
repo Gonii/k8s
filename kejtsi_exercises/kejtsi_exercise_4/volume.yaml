@@ -9,7 +9,7 @@ spec:
   accessModes: 
   - ReadWriteMany
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   hostPath:
     path: /tmp/goni/
     type: DirectoryOrCreate
@@ -27,7 +27,7 @@ spec:
       name: pv01
   resources:
     requests:
-      storage: 2Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Pod
