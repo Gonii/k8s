@@ -19,6 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pv01claim
 spec:
+  storageClassName: ""
   accessModes:
   - ReadWriteMany
   selector:
