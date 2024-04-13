@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: complex-app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: complex-app
+  template:
+    metadata:
+      labels:
+        app: complex-app
+    spec:
+      containers:
+      - name: main-container
+        image: app
+        command: ["node"]
+        args: ["app.js"]
+        resources:
+          limits:
+            cpu: "100m"
+            memory: "100Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 5
+      - name: sidecar-container
+        image: busybox
+        args: ["sleep", "1000"]

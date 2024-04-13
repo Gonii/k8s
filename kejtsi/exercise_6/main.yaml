@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: development
+  name: createGetListDeletePodsRole
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create","get","list","delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: development
+  name: dev-userCreateGetListDeletePodsRoleBinding
+subjects:
+  - kind: User
+    name: dev-user
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: createGetListDeletePodsRole
+  apiGroup: rbac.authorization.k8s.io
+

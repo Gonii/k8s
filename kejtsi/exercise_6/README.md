@@ -1,0 +1,2 @@
+### Exercise 6: RBAC and Security
+**Task**: Create a Role and RoleBinding that allows a user named `dev-user` in the `development` namespace to create, get, list, and delete Pods. Document the `kubectl` commands used.
